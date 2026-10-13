@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $__env->yieldContent('title', 'Portal Perpustakaan'); ?> - Perpustakaan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 border-r border-slate-800 flex flex-col transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+        
+        <!-- Logo -->
+        <div class="flex items-center gap-3 px-6 py-5 border-b border-slate-800">
+            <div class="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center font-bold text-white text-lg shadow-lg shadow-blue-600/30">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <div>
+                <p class="text-sm font-bold text-white leading-tight">Portal Perpustakaan</p>
+                <p class="text-[10px] text-slate-500">Projek Laravel</p>
+            </div>
+        </div>
+
+        <!-- Navigasi -->
+        <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
+            <p class="text-[10px] uppercase font-semibold text-slate-600 px-3 pt-2 pb-1 tracking-widest">Menu Utama</p>
+
+            <a href="<?php echo e(route('user.dashboard')); ?>"
+               class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition duration-200 <?php echo e(request()->routeIs('user.dashboard') ? 'bg-blue-600/20 text-blue-400 border border-blue-500/20' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'); ?>">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Beranda
+            </a>
+
+            <a href="<?php echo e(route('user.catalog')); ?>"
+               class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition duration-200 <?php echo e(request()->routeIs('user.catalog') ? 'bg-blue-600/20 text-blue-400 border border-blue-500/20' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'); ?>">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                Katalog Buku
+            </a>
+
+            <a href="<?php echo e(route('user.loans')); ?>"
+               class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition duration-200 <?php echo e(request()->routeIs('user.loans') ? 'bg-blue-600/20 text-blue-400 border border-blue-500/20' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'); ?>">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                Riwayat Pinjam
+            </a>
+
+            <a href="<?php echo e(route('user.fines')); ?>"
+               class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition duration-200 <?php echo e(request()->routeIs('user.fines') ? 'bg-blue-600/20 text-blue-400 border border-blue-500/20' : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'); ?>">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Denda Saya
+                <?php
+                    $unpaidFines = \App\Models\Fine::where('user_id', auth()->id())->where('status','unpaid')->count();
+                ?>
+                <?php if($unpaidFines > 0): ?>
+                    <span class="ml-auto px-1.5 py-0.5 bg-red-500 text-white text-[10px] font-bold rounded-full"><?php echo e($unpaidFines); ?></span>
+                <?php endif; ?>
+            </a>
+
+            <div class="pt-4">
+                <p class="text-[10px] uppercase font-semibold text-slate-600 px-3 pb-1 tracking-widest">Akun</p>
+                <a href="<?php echo e(route('dashboard')); ?>" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition duration-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                    Profil Saya
+                </a>
+            </div>
+        </nav>
+
+        <!-- User Info + Logout di Sidebar -->
+        <div class="p-4 border-t border-slate-800">
+            <div class="flex items-center gap-3 mb-3 px-1">
+                <div class="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 font-bold flex items-center justify-center text-sm border border-blue-500/30">
+                    <?php echo e(strtoupper(substr(auth()->user()->name ?? 'U', 0, 1))); ?>
+
+                </div>
+                <div class="min-w-0">
+                    <p class="text-xs font-semibold text-slate-200 truncate"><?php echo e(auth()->user()->name ?? 'Pengguna'); ?></p>
+                    <p class="text-[10px] text-slate-500 truncate"><?php echo e(auth()->user()->email ?? ''); ?></p>
+                </div>
+            </div>
+            <form action="<?php echo e(route('logout')); ?>" method="POST">
+                <?php echo csrf_field(); ?>
+                <button type="submit" class="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:bg-blue-600/10 hover:text-blue-400 border border-slate-700 hover:border-blue-500/30 transition duration-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                    Keluar
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <!-- Overlay Mobile -->
+    <div id="overlay" class="fixed inset-0 z-40 bg-black/60 lg:hidden hidden" onclick="toggleSidebar()"></div>
+
+    <!-- MAIN CONTENT -->
+    <div class="flex-1 flex flex-col lg:ml-64 min-h-screen">
+
+        <!-- Topbar -->
+        <header class="sticky top-0 z-30 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-6 py-3.5 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <button onclick="toggleSidebar()" class="lg:hidden p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-slate-200 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+                <div>
+                    <h1 class="text-sm font-semibold text-white"><?php echo $__env->yieldContent('page-title', 'Dashboard'); ?></h1>
+                    <p class="text-[11px] text-slate-500"><?php echo $__env->yieldContent('page-subtitle', 'Portal Perpustakaan Digital'); ?></p>
+                </div>
+            </div>
+            <span class="px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-semibold rounded-full uppercase">Anggota</span>
+        </header>
+
+        <!-- Page Content -->
+        <main class="flex-1 p-6 md:p-8 overflow-y-auto">
+            <?php echo $__env->yieldContent('content'); ?>
+        </main>
+
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+    </script>
+
+</body>
+</html>
+<?php /**PATH C:\projek_laravel - Copy\resources\views/user/layouts/app.blade.php ENDPATH**/ ?>
